@@ -32,7 +32,8 @@ Repo: https://github.com/AyeshaFatiima/WanderLust/
 
 - Deployment: Render
 
-```Project Structure
+## Project Structure
+```
 WanderLust/
 
 controllers/        // Backend logic for routes
