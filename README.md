@@ -1,20 +1,23 @@
 # WanderLust
-Welcome to WanderLust — a dynamic travel listing web app built to help users explore exciting travel experiences around the world! Whether you're a traveler looking for new adventures or an event organizer showcasing listings, this app makes everything simple and beautiful.
+WanderLust is a full-featured travel listing web application that allows users to explore, create, and interact with travel experiences worldwide. Users can browse destinations, search & filter listings, add reviews & ratings, and manage their own listings with full CRUD functionality.
 
 🔗 Live: https://wanderlust-dn2a.onrender.com/listings 
 
 🚀 Key Features
-Full CRUD Functionality: Users can Create, Read, Update, and Delete travel listings seamlessly.
+Features
 
-User Authentication: Secure signup and login flow powered by Passport.js.
+User Authentication: Signup and login
 
-Authorization: Middleware implemented to ensure only owners can edit or delete their specific listings.
+CRUD Listings: Add, edit, delete travel listings
 
-Review System: Interactive rating and commenting system for enhanced user engagement.
+Search & Filter: Easily find destinations based on criteria
 
-Cloud Image Management: Integrated with Cloudinary for optimized image uploads and storage.
+Reviews & Ratings: Leave feedback and rate destinations
 
-Persistent Sessions: Uses connect-mongo to store sessions in the database, keeping users logged in even after server restarts.
+Responsive Design: Works seamlessly on all devices
+
+Interactive UI: Smooth navigation and engaging interface
+
 
 🛠️ Technical Stack
 Backend: Node.js, Express.js.
@@ -30,34 +33,23 @@ Storage: Multer & Cloudinary for handling multipart/form-data (images).
 📁 Repository Structure
 Plaintext
 WanderLust/
-├── controllers/    # Logic for routes
-├── models/         # Mongoose Schemas (Listing, Review, User)
-├── public/         # Static assets (Stylesheets, Client-side JS)
-├── routes/         # Express router files
-├── views/          # EJS templates for UI
-└── app.js          # Server entry point & Middleware config
-🔧 Installation
-To run this project locally, follow these steps:
+WanderLust/
+├─ controllers/        # Backend logic for routes
+├─ css/                # CSS files
+├─ init/               # Initialization scripts (if any)
+├─ models/             # MongoDB schemas
+├─ public/             # Static assets (images, JS, CSS)
+├─ routes/             # Express routes
+├─ utils/              # Utility/helper functions
+├─ views/              # EJS templates for frontend
+├─ .gitignore
+├─ README.md
+├─ app.js              # Main application entry point
+├─ cloudConfig.js      # Cloud / deployment configs
+├─ middleware.js       # Express middleware functions
+├─ package-lock.json
+├─ package.json
+├─ repro_validation.js # Validation logic
+└─ schema.js           # Database schemas or validation
 
-Clone the repository:
 
-Bash
-git clone https://github.com/AyeshaFatiima/WanderLust.git
-Install dependencies:
-
-Bash
-npm install
-Set up your .env file with the following keys:
-
-ATLASDB_URL (MongoDB Connection String)
-
-SECRET (Session Secret)
-
-CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET (Cloudinary Credentials)
-
-MAPBOX_TOKEN (Optional: Mapbox Public Key)
-
-Start the server:
-
-Bash
-node app.js
