@@ -1,5 +1,5 @@
 # WanderLust
-WanderLust is a comprehensive web application designed to simulate a travel marketplace like Airbnb. It follows the MVC (Model-View-Controller) architecture to ensure scalable and organized code. Users can browse exotic listings, share their own properties, and leave reviews for the community.
+Welcome to WanderLust — a dynamic travel listing web app built to help users explore exciting travel experiences around the world! Whether you're a traveler looking for new adventures or an event organizer showcasing listings, this app makes everything simple and beautiful.
 
 🔗 Live: https://wanderlust-dn2a.onrender.com/listings 
 
