@@ -1,0 +1,169 @@
+<%- layout("/layouts/boilerplate") %>
+
+  <!-- <h3>All Listings</h3> -->
+
+  <style>
+    #filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      /* gap: 2rem; */
+    }
+
+   .filter {
+  text-align: center;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  opacity: 0.7;
+  cursor: pointer;
+  border-bottom: 2px solid transparent; 
+  transition: 0.2s opacity, 0.2s border-color; 
+}
+
+    .filter:hover {
+      opacity: 1;
+      border-bottom: 2px solid #f12230 !important;
+    }
+.active-filter {
+  opacity: 1;
+  border-bottom: 2px solid #f12230 !important;
+}
+    .filter p {
+      margin-top: 0.3rem;
+      font-size: 0.8rem;
+    }
+
+    .filter div {
+      font-size: 1.5rem;
+    }
+
+    .filter i {
+      color: #f12230;
+      ;
+    }
+
+    .tax-info {
+      display: none;
+      color: #f12230;
+    }
+
+    .tax-toggle {
+      border: 1px solid rgba(0, 0, 0, 0.45);
+      padding: 0.8rem 1rem;
+      border-radius: 1rem;
+      height: 3.25rem;
+      margin-top: 1rem;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+    }
+  </style>
+
+  <div id="filters">
+    <a href="/listings?search=Trending" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </a>   
+    <a href="/listings?search=Rooms" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </a>
+    <a href="/listings?search=Mountains" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p>Mountains</p>
+    </a>
+    <a href="/listings?search=Castles" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-hotel"></i></div>
+      <p>Castles</p>
+    </a>
+    <a href="/listings?search=Lake" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-water"></i></div>
+      <p>Lake</p>
+    </a>
+    <a href="/listings?search=Camping" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-tent"></i></div>
+      <p>Camping</p>
+    </a>
+    <a href="/listings?search=Amazing Views" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-eye"></i></div>
+      <p>Amazing Views</p>
+    </a>
+    <a href="/listings?search=Iconic Cities" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-city"></i></div>
+      <p>Iconic Cities</p>
+    </a>
+    <a href="/listings?search=Farms" class="filter" style="text-decoration: none; color: inherit;">
+      <div><i class="fa-solid fa-home"></i></div>
+      <p>Farms</p>
+    </a>
+
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+        <label class="form-check-label" for="flexSwitchCheckChecked">Display total after taxes</label>
+      </div>
+    </div>
+  </div>
+
+  <% if (allListings.length> 0) { %>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-4 mt-3">
+      <% for(let listing of allListings) { %>
+        <div class="col mb-3">
+          <a href="/listings/<%= listing._id %>" class="listing-link">
+            <div class="card h-100 listing-card">
+              <img src="<%= listing.image.url || listing.image %>" class="card-img-top" alt="<%= listing.title %>"
+                style="height: 20rem; object-fit: cover;">
+              <div class="card-img-overlay"></div>
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= listing.title %>
+                </h5>
+                <p class="card-text">
+                  <%= listing.location %>, <%= listing.country %>
+                      <br>
+                      &#8377; <%= (listing.price || 0).toLocaleString("en-IN") %> / night
+                        <i class="tax-info"> &nbsp; &nbsp; &nbsp;+18% GST</i>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% } %>
+    </div>
+    <% } else { %>
+      <div class="row mt-3">
+        <div class="alert alert-danger col-6 offset-3 mt-5 text-center" role="alert">
+          No listings found for your search!
+        </div>
+      </div>
+      <% } %>
+
+        <script>
+let taxSwitch = document.getElementById("flexSwitchCheckChecked");
+taxSwitch.addEventListener("click", () => {
+  let taxInfo = document.querySelectorAll(".tax-info");
+  for (let info of taxInfo) {
+    if (info.style.display != "inline") {
+      info.style.display = "inline";
+    } else {
+      info.style.display = "none";
+    }
+  }
+});
+
+// Active filter detect karne ka simple tarika
+let params = new URLSearchParams(window.location.search);
+let currentTag = params.get('search');
+
+document.querySelectorAll('.filter').forEach(link => {
+    // Agar link ke href mein current search word hai, toh active class de do
+    if (link.href.includes(`search=${currentTag}`)) {
+        link.classList.add('active-filter');
+    }
+
+    // Click par border change (for instant feedback)
+    link.addEventListener('click', () => {
+        document.querySelector('.active-filter')?.classList.remove('active-filter');
+        link.classList.add('active-filter');
+    });
+});        </script>
