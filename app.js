@@ -49,7 +49,7 @@ const store = MongoStore.create({
 
 store.on("error", () => {
   console.log("SESSION STORE ERROR");
-})
+});
 
 const sessionOptions = {
   store,
@@ -61,7 +61,7 @@ const sessionOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true
   }
-}
+};
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -79,7 +79,7 @@ app.use((req, res, next) => {
   res.locals.currUser = req.user;
   res.locals.mapboxToken = process.env.MAPBOX_TOKEN;
   next();
-})
+});
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
@@ -95,4 +95,6 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 8081;
-app.listen(port, () =>
+app.listen(port, () => {
+  console.log(`server is listening to port ${port}`);
+});
