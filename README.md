@@ -1,4 +1,4 @@
- WanderLust | Full-Stack Travel Marketplace
+# WanderLust
 WanderLust is a comprehensive web application designed to simulate a travel marketplace like Airbnb. It follows the MVC (Model-View-Controller) architecture to ensure scalable and organized code. Users can browse exotic listings, share their own properties, and leave reviews for the community.
 
 🔗 Live Deployment: View Project on Render
