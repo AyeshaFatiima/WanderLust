@@ -32,8 +32,6 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
-
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -64,11 +62,6 @@ const sessionOptions = {
     httpOnly: true
   }
 }
-// app.get("/", (req, res) => {
-//   res.send("Hi, I am root");
-// });
-
-
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -88,15 +81,6 @@ app.use((req, res, next) => {
   next();
 })
 
-// app.get("/demouser",async(req,res)=>{
-//   let fakeUser=new User({
-//     email:"student@gmail.com",
-//     username:"delta-stuent"
-//   });
-//   let registeredUser = await User.register(fakeUser,"password123");
-//   res.send(registeredUser);
-// })
-
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
@@ -110,6 +94,5 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
 });
 
-app.listen(8081, () => {
-  console.log("server is listening to port 8081");
-})
+const port = process.env.PORT || 8081;
+app.listen(port, () =>
